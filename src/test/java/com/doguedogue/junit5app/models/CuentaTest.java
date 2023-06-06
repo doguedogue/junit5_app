@@ -28,6 +28,23 @@ class CuentaTest {
 		assertEquals(1000.12345, cuenta.getSaldo().doubleValue());
 		
 		assertFalse(cuenta.getSaldo().compareTo(BigDecimal.ZERO) < 0);
+		
+		assertTrue(cuenta.getSaldo().compareTo(BigDecimal.ZERO) > 0);
 	}
+	
+	@Test
+	void testReferenciaCuenta() {
+		Cuenta cuenta = new Cuenta("John Doe", new BigDecimal("1000.12345"));
+		Cuenta cuenta2 = new Cuenta("John Doe", new BigDecimal("1000.12345"));
+		
+		
+		//reference not equals
+		//assertNotEquals(cuenta2, cuenta);
+		
+		//overriding equals method
+		assertEquals(cuenta2, cuenta);
+		
+	}
+	
 
 }
