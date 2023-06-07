@@ -6,14 +6,20 @@ import com.doguedogue.junit5app.exceptions.DineroInsuficienteException;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class Cuenta {
+	@NonNull
 	private String persona;
+	@NonNull
 	private BigDecimal saldo;
+	
+	private Banco banco;
 	
 	@Override
 	public boolean equals(Object obj) {
