@@ -27,5 +27,15 @@ public class Cuenta {
 		
 		return this.persona.equals(c.getPersona()) && this.saldo.equals(c.getSaldo());
 	}
+
+	public void retiro(BigDecimal bigDecimal) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void deposito(BigDecimal bigDecimal) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

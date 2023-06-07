@@ -16,6 +16,7 @@ class CuentaTest {
 		
 		String esperado = "Rafael";
 		String real = cuenta.getPersona();
+		assertNotNull(real);
 		
 		assertEquals(esperado, real);
 		assertTrue(real.equals("Rafael"));
@@ -25,6 +26,7 @@ class CuentaTest {
 	void testSaldoCuenta() {
 		Cuenta cuenta = new Cuenta("Rafael", new BigDecimal("1000.12345"));
 		
+		assertNotNull(cuenta.getSaldo());
 		assertEquals(1000.12345, cuenta.getSaldo().doubleValue());
 		
 		assertFalse(cuenta.getSaldo().compareTo(BigDecimal.ZERO) < 0);
@@ -44,6 +46,26 @@ class CuentaTest {
 		//overriding equals method
 		assertEquals(cuenta2, cuenta);
 		
+	}
+	
+	@Test
+	void testRetiroCuenta() {
+		Cuenta cuenta = new Cuenta("Juan Pérez", new BigDecimal("1000.12345"));
+		cuenta.retiro(new BigDecimal("100"));
+		
+		assertNotNull(cuenta.getSaldo());
+		assertEquals(900, cuenta.getSaldo().intValue());
+		assertEquals("900.12345", cuenta.getSaldo().toPlainString());
+	}
+	
+	@Test
+	void testDepositoCuenta() {
+		Cuenta cuenta = new Cuenta("Juan Pérez", new BigDecimal("1000.12345"));
+		cuenta.deposito(new BigDecimal("100"));
+		
+		assertNotNull(cuenta.getSaldo());
+		assertEquals(1100, cuenta.getSaldo().intValue());
+		assertEquals("1100.12345", cuenta.getSaldo().toPlainString());
 	}
 	
 
