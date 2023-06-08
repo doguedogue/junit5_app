@@ -2,6 +2,9 @@ package com.doguedogue.junit5app.models;
 
 import static org.junit.jupiter.api.Assertions.*;
 import java.math.BigDecimal;
+
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import com.doguedogue.junit5app.exceptions.DineroInsuficienteException;
 
@@ -99,6 +102,8 @@ class CuentaTest {
 	
 	
 	@Test
+	@Disabled
+	@DisplayName("Prueba de método deshabilitado en pausa por TDD")
 	void testRelacionesCuentas() {
 		Cuenta cuenta1 = new Cuenta("John Doe", new BigDecimal("2500"));
 		Cuenta cuenta2 = new Cuenta("Juan Pérez", new BigDecimal("1500.8989"));
