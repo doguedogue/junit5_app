@@ -48,12 +48,11 @@ class CuentaTest {
 	
 	@Test
 	void testRetiroCuenta() {
-		Cuenta cuenta = new Cuenta("Juan Pérez", 
-//				new BigDecimal("1000.12345")
-				null
-				);
+		Cuenta cuenta = new Cuenta("Juan Pérez", new BigDecimal("1000.12345"));
+		
 		assertNotNull(cuenta.getSaldo(), ()->"El saldo no debe ser nulo");
-		cuenta.retiro(new BigDecimal("100"));
+		
+		cuenta.retiro(new BigDecimal("100"));		
 		
 		assertEquals(900, cuenta.getSaldo().intValue(), ()-> "El valor experado no es igual al real");
 		assertEquals("900.12345", cuenta.getSaldo().toPlainString(),
