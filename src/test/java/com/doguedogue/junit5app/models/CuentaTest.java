@@ -3,18 +3,30 @@ package com.doguedogue.junit5app.models;
 import static org.junit.jupiter.api.Assertions.*;
 import java.math.BigDecimal;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import com.doguedogue.junit5app.exceptions.DineroInsuficienteException;
 
 class CuentaTest {
+	
+	Cuenta cuenta;
+	
+	@BeforeEach
+	void initMethodTest() {
+		System.out.println("Iniciando el método");
+		cuenta = new Cuenta("Rafael", new BigDecimal("1000.12345"));
+	}
 
+	@AfterEach
+	void endMethodTest() {
+		System.out.println("Finalizando el método");
+	}
+	
 	@Test
 	void testNombreCuenta() {
-		Cuenta cuenta = new Cuenta("Rafael", new BigDecimal("1000.12345"));
-
-		
 		String esperado = "Rafael";
 		String real = cuenta.getPersona();
 		assertNotNull(real);
@@ -25,8 +37,6 @@ class CuentaTest {
 	
 	@Test
 	void testSaldoCuenta() {
-		Cuenta cuenta = new Cuenta("Rafael", new BigDecimal("1000.12345"));
-		
 		assertNotNull(cuenta.getSaldo());
 		assertEquals(1000.12345, cuenta.getSaldo().doubleValue());
 		
@@ -37,22 +47,20 @@ class CuentaTest {
 	
 	@Test
 	void testReferenciaCuenta() {
-		Cuenta cuenta = new Cuenta("John Doe", new BigDecimal("1000.12345"));
+		Cuenta cuenta1 = new Cuenta("John Doe", new BigDecimal("1000.12345"));
 		Cuenta cuenta2 = new Cuenta("John Doe", new BigDecimal("1000.12345"));
 		
 		
 		//reference not equals
-		//assertNotEquals(cuenta2, cuenta);
+		//assertNotEquals(cuenta2, cuenta1);
 		
 		//overriding equals method
-		assertEquals(cuenta2, cuenta);
+		assertEquals(cuenta2, cuenta1);
 		
 	}
 	
 	@Test
 	void testRetiroCuenta() {
-		Cuenta cuenta = new Cuenta("Juan Pérez", new BigDecimal("1000.12345"));
-		
 		assertNotNull(cuenta.getSaldo(), ()->"El saldo no debe ser nulo");
 		
 		cuenta.retiro(new BigDecimal("100"));		
@@ -64,7 +72,6 @@ class CuentaTest {
 	
 	@Test
 	void testDepositoCuenta() {
-		Cuenta cuenta = new Cuenta("Juan Pérez", new BigDecimal("1000.12345"));
 		cuenta.deposito(new BigDecimal("100"));
 		
 		assertNotNull(cuenta.getSaldo());
@@ -73,9 +80,7 @@ class CuentaTest {
 	}
 	
 	@Test
-	void testDineroInsuficienteExceptionCuenta() {
-		Cuenta cuenta = new Cuenta("Juan Pérez", new BigDecimal("1000.12345"));
-		
+	void testDineroInsuficienteExceptionCuenta() {	
 		Exception exception = assertThrows(DineroInsuficienteException.class, () -> {
 			cuenta.retiro(new BigDecimal("1500"));			
 		});
@@ -102,9 +107,10 @@ class CuentaTest {
 	
 	
 	@Test
-	@Disabled
+//	@Disabled
 	@DisplayName("Prueba de método deshabilitado en pausa por TDD")
 	void testRelacionesCuentas() {
+//		fail();
 		Cuenta cuenta1 = new Cuenta("John Doe", new BigDecimal("2500"));
 		Cuenta cuenta2 = new Cuenta("Juan Pérez", new BigDecimal("1500.8989"));
 		
