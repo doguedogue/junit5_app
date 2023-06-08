@@ -12,14 +12,16 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
 public class Cuenta {
-	@NonNull
 	private String persona;
-	@NonNull
 	private BigDecimal saldo;
 	
 	private Banco banco;
+	
+	public Cuenta (String persona, BigDecimal saldo) {
+		setPersona(persona);
+		setSaldo(saldo);
+	}
 	
 	@Override
 	public boolean equals(Object obj) {
