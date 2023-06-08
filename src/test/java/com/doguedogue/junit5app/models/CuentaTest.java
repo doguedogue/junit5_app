@@ -3,13 +3,18 @@ package com.doguedogue.junit5app.models;
 import static org.junit.jupiter.api.Assertions.*;
 import java.math.BigDecimal;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+
 import com.doguedogue.junit5app.exceptions.DineroInsuficienteException;
 
+//@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CuentaTest {
 	
 	Cuenta cuenta;
@@ -23,6 +28,16 @@ class CuentaTest {
 	@AfterEach
 	void endMethodTest() {
 		System.out.println("Finalizando el método");
+	}
+	
+	@BeforeAll
+	static void initTest() {
+		System.out.println("Iniciando TEST");
+	}
+	
+	@AfterAll
+	static void endTest() {
+		System.out.println("Finalizando TEST");
 	}
 	
 	@Test
